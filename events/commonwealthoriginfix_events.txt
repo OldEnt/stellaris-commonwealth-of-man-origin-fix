@@ -1,0 +1,83 @@
+namespace = commonwealthoriginfix
+
+planet_event = {
+	id = commonwealthoriginfix.0
+	hide_window = yes
+	fire_only_once = yes
+	trigger = {
+		has_owner = yes
+		is_capital = yes
+		NOR = { is_planet_class = pc_continental is_planet_class = pc_tomb is_planet_class = pc_nuked}
+		owner = {
+		is_ai = yes
+		has_country_flag = human_2
+		has_origin = origin_lost_colony
+		species_portrait = human
+		any_system_within_border = { has_star_flag = deneb_system has_star_flag = empire_cluster}
+		}
+		NOT = { has_planet_flag = commonwealthoriginfix }
+	}
+	immediate = {
+		change_pc = pc_continental
+		generate_start_deposits_and_blockers = yes
+		check_planet_employment = yes
+		add_modifier = {
+					modifier = colonial_spirit_mod
+					days = -1
+					}
+		set_planet_flag = commonwealthoriginfixflag
+	}
+}
+
+planet_event = {
+	id = commonwealthoriginfix.1
+	hide_window = yes
+	fire_only_once = yes
+	trigger = {
+		has_owner = yes
+		is_capital = yes
+		OR = { is_planet_class = pc_tomb is_planet_class = pc_nuked }
+		owner = {
+		is_ai = yes
+		has_country_flag = human_2
+		has_origin = origin_lost_colony
+		species_portrait = human
+		any_system_within_border = { has_star_flag = deneb_system has_star_flag = empire_cluster}
+		}
+		NOT = { has_planet_flag = commonwealthoriginfixflag }
+	}
+	immediate = {
+		change_pc = pc_continental
+		generate_start_deposits_and_blockers = yes
+		set_planet_flag = commonwealthoriginfixflag
+		add_modifier = {
+					modifier = colonial_spirit_mod
+					days = -1
+					}
+		planet_event = {
+			id = commonwealthoriginfix.2
+			days = 1
+			random = 0
+		}
+	}
+}
+
+planet_event = {
+	id = commonwealthoriginfix.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+	has_planet_flag = commonwealthoriginfixflag
+	}
+	immediate = {
+	hidden_effect = {
+		add_district = district_generator
+		add_district = district_generator
+		add_district = district_generator
+		add_district = district_farming
+		add_district = district_farming
+		add_district = district_farming
+		check_planet_employment = yes
+		}
+	}
+}
